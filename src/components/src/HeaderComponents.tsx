@@ -1,7 +1,7 @@
 import { Button, Input, Modal, PageHeader, Space } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import React, { useState } from 'react';
-import { httpAddUser } from '../server';
+import { httpAddUser } from '../../service';
 
 const HeaderComponents = ({ login, status }: any) => {
   const [loading, setLoading] = useState(false);

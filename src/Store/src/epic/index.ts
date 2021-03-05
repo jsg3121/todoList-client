@@ -1,5 +1,3 @@
-import loginMiddleWare from './loginMiddleWare';
+import loginMiddleWare from "./loginMiddleWare";
 
-export {
-  loginMiddleWare
-};
+export { loginMiddleWare };

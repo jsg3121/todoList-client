@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App/src/App';
+import './style/index.scss';
+import App from './app/src/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { AnyAction, applyMiddleware, createStore, Store } from 'redux';
-import rootReducer from './Store/src/action';
-import { loginMiddleWare } from './Store/src/epic';
+import rootReducer from './store/src/action';
+import { loginMiddleWare } from './store/src/epic';
 
 const store: Store<any, AnyAction> = createStore(rootReducer, applyMiddleware(loginMiddleWare));
 const persistor = persistStore(store);

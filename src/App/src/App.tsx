@@ -1,8 +1,8 @@
 import React from 'react';
 import { Redirect, Route } from 'react-router-dom';
-import './App.scss';
-import HeaderContainer from '../../View/HeaderContainer';
-import MainContainer from '../../View/MainContainer';
+import '../../style/App.scss';
+import HeaderContainer from '../../view/HeaderContainer';
+import MainContainer from '../../view/MainContainer';
 
 const App = () => {
 

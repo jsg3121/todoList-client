@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import activeLogin from "./module/loginModule";
+import activeLogin from "./loginModule";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 
