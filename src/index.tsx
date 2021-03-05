@@ -8,8 +8,8 @@ import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { AnyAction, applyMiddleware, createStore, Store } from 'redux';
-import rootReducer from './Store/Modules';
-import { loginMiddleWare } from './Store/Middleware';
+import rootReducer from './Store/src/action';
+import { loginMiddleWare } from './Store/src/epic';
 
 const store: Store<any, AnyAction> = createStore(rootReducer, applyMiddleware(loginMiddleWare));
 const persistor = persistStore(store);
