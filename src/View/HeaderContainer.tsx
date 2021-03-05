@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 import HeaderComponents from '../Components/HeaderComponents';
-import { login } from '../Modules/module/loginModule';
+import { login } from '../Store/Modules/module/loginModule';
 
 const mapStateToProps = (state: { activeLogin: { loginVal: { toString: () => string; }; }; }) => {
   return ({

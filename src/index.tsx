@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
+import App from './App/src/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import { AnyAction, applyMiddleware, createStore, Store } from 'redux';
-import rootReducer from './Modules';
-import { loginMiddleWare } from './Middleware';
+import rootReducer from './Store/Modules';
+import { loginMiddleWare } from './Store/Middleware';
 
 const store: Store<any, AnyAction> = createStore(rootReducer, applyMiddleware(loginMiddleWare));
 const persistor = persistStore(store);
