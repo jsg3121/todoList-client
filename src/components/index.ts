@@ -1,3 +1,5 @@
-const app = true;
+import HeaderComponent from "./src/common/HeaderComponents";
+import LoginComponent from "./src/login/LoginComponents";
+import MainComponent from "./src/main/MainComponents";
 
-export default app;
+export { HeaderComponent, LoginComponent, MainComponent };

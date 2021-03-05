@@ -1,9 +1,16 @@
 import { Button, Input, Modal, PageHeader, Space } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import React, { useState } from 'react';
-import { httpAddUser } from '../../service';
+import { httpAddUser } from '../../../service';
 
-const HeaderComponents = ({ login, status }: any) => {
+
+export interface HeaderProps {
+  login: () => void,
+  status?: string;
+}
+
+
+export const HeaderComponents: React.FC<HeaderProps> = ({ login, status }) => {
   const [loading, setLoading] = useState(false);
   const [visibleLogin, setVisibleLogin] = useState(false);
   const [visibleAddUser, setVisibleAddUser] = useState(false);
@@ -89,5 +96,3 @@ const HeaderComponents = ({ login, status }: any) => {
     </header>
   );
 };
-
-export default HeaderComponents;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { AnyAction, bindActionCreators, Dispatch } from 'redux';
-import HeaderComponents from '../components/src/HeaderComponents';
+import { HeaderComponent } from '../components';
 import { login } from '../store/src/action/loginModule';
 
 const mapStateToProps = (state: { activeLogin: { loginVal: { toString: () => string; }; }; }) => {
@@ -20,7 +20,7 @@ const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
 
 const HeaderContainer = ({ login, loginStatus }: any) => {
   return (
-    <HeaderComponents login={login} status={loginStatus} />
+    <HeaderComponent login={login} status={loginStatus} />
   );
 };
 
