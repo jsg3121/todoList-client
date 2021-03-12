@@ -1,3 +1,3 @@
-const app = true;
+import App from "./src/App";
 
-export default app;
+export default App;

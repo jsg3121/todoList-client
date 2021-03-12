@@ -1,3 +1,3 @@
-import loginMiddleWare from "./loginMiddleWare";
+import loginMiddleWare from "./src/loginMiddleWare";
 
 export { loginMiddleWare };

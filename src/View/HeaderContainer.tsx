@@ -1,27 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { AnyAction, bindActionCreators, Dispatch } from 'redux';
-import { HeaderComponent } from '../components';
-import { login } from '../store/src/action/loginModule';
+import HeaderComponents from '../components/src/common/HeaderComponents';
 
-const mapStateToProps = (state: { activeLogin: { loginVal: { toString: () => string; }; }; }) => {
-  return ({
-    loginStatus: state.activeLogin.loginVal
-  });
-};
-
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) =>
-  bindActionCreators(
-    {
-      login
-    },
-    dispatch
-  );
-
-const HeaderContainer = ({ login, loginStatus }: any) => {
+const HeaderContainer = () => {
   return (
-    <HeaderComponent login={login} status={loginStatus} />
+    <HeaderComponents />
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);;
+export default HeaderContainer;

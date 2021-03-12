@@ -1,15 +1,9 @@
-import { combineReducers } from "redux";
-import activeLogin from "./loginModule";
-import storage from "redux-persist/lib/storage";
-import { persistReducer } from "redux-persist";
+import * as accountAction from "./src/account.action";
 
-const persistConfig = {
-  key: "root",
-  storage,
+const Default = {
+  accountAction,
 };
 
-const rootReducer = combineReducers({
-  activeLogin,
-});
+export default Default;
 
-export default persistReducer(persistConfig, rootReducer);
+export const exampleAction = accountAction;

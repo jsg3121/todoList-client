@@ -5,13 +5,11 @@ import { httpAddUser } from '../../../service';
 
 
 export interface HeaderProps {
-  login: () => void,
   status?: string;
 }
 
 
-const HeaderComponents: React.FC<HeaderProps> = ({ login }, props) => {
-  const { } = props;
+const HeaderComponents: React.FC<HeaderProps> = () => {
 
   const [loading, setLoading] = useState(false);
   const [visibleLogin, setVisibleLogin] = useState(false);
@@ -51,9 +49,9 @@ const HeaderComponents: React.FC<HeaderProps> = ({ login }, props) => {
     setVisibleAddUser(false);
   };
 
+
   const loginCheck = async () => {
     setLoading(true);
-    login();
   };
 
   const addUser = async () => {

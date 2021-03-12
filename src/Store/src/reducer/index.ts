@@ -1,3 +1,10 @@
-const app = true;
+import { combineReducers } from "@reduxjs/toolkit";
+import accountReducer from "./src/account.reducer";
 
-export default app;
+const rootReducer = combineReducers({
+  accountReducer,
+});
+
+export type RootState = ReturnType<typeof rootReducer>;
+
+export default rootReducer;
