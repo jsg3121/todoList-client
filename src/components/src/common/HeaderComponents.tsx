@@ -10,7 +10,9 @@ export interface HeaderProps {
 }
 
 
-export const HeaderComponents: React.FC<HeaderProps> = ({ login, status }) => {
+const HeaderComponents: React.FC<HeaderProps> = ({ login }, props) => {
+  const { } = props;
+
   const [loading, setLoading] = useState(false);
   const [visibleLogin, setVisibleLogin] = useState(false);
   const [visibleAddUser, setVisibleAddUser] = useState(false);
@@ -51,7 +53,7 @@ export const HeaderComponents: React.FC<HeaderProps> = ({ login, status }) => {
 
   const loginCheck = async () => {
     setLoading(true);
-    await login();
+    login();
   };
 
   const addUser = async () => {
@@ -96,3 +98,5 @@ export const HeaderComponents: React.FC<HeaderProps> = ({ login, status }) => {
     </header>
   );
 };
+
+export default HeaderComponents;

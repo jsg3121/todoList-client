@@ -4,6 +4,7 @@ module.exports = function (app) {
   app.use(
     createProxyMiddleware("/api/addUser", {
       target: "https://sgserver-todolist.herokuapp.com",
+      // target: "http://localhost:3000",
       changeOrigin: true,
     })
   );
