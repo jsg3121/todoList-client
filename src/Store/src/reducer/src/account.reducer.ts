@@ -1,29 +1,30 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { ActionType } from "typesafe-actions";
-import { NEW_ACCOUNT } from "../../action/src/account.action";
-import { accountActions } from "../../action/src/account.action";
+import { newAccount } from "../../action/src/account.action";
 
-type accountInfo = {
+type inputNewAccountType = {
   id: string;
-  isLogin: boolean;
-  loginTime?: Date;
+  password: string;
 };
 
-type AccountReducerActions = ActionType<typeof accountActions>;
-
-const accountState: accountInfo = {
+const inputNewAccount: inputNewAccountType = {
   id: "",
-  isLogin: false,
-  loginTime: new Date(),
+  password: "",
 };
 
-const accountReducer = createReducer<accountInfo, AccountReducerActions["newAccount"]>(accountState, {
-  [NEW_ACCOUNT]: () => {
-    return {
-      id: "admin",
-      isLogin: false,
+const accountReducer = createReducer(inputNewAccount, (build) => {
+  build.addCase(newAccount, (state, payload) => {
+    const accountInfo: inputNewAccountType = {
+      id: payload.payload.id,
+      password: payload.payload.password,
     };
-  },
+    return (state = accountInfo);
+  });
 });
+
+// const accountReducer = createReducer(accountState, (builder) => {
+//   builder.addCase(newAccount, (state, action) => {
+//     return;
+//   });
+// });
 
 export default accountReducer;

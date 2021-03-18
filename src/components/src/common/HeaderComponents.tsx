@@ -1,7 +1,8 @@
-import { Button, Input, Modal, PageHeader, Space } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { Button, Input, Modal, PageHeader, Space } from 'antd';
 import React, { useState } from 'react';
-import { httpAddUser } from '../../../service';
+import { useAppDispatch } from '../../../store';
+import { newAccount } from '../../../store/src/action/src/account.action';
 
 
 export interface HeaderProps {
@@ -18,6 +19,8 @@ const HeaderComponents: React.FC<HeaderProps> = () => {
     id: "",
     password: "",
   });
+
+  const dispatch = useAppDispatch();
 
   const showModal = (e: any) => {
     switch (e.target.innerHTML) {
@@ -49,19 +52,20 @@ const HeaderComponents: React.FC<HeaderProps> = () => {
     setVisibleAddUser(false);
   };
 
-
   const loginCheck = async () => {
     setLoading(true);
   };
 
   const addUser = async () => {
     setLoading(true);
-    const result = await httpAddUser(userInfo);
-    if (result) {
-      setLoading(true);
-      alert("회원가입이 완료되었습니다.");
-      window.location.reload();
-    }
+    // const result = await httpAddUser(userInfo);
+    // if (result) {
+    //   setLoading(true);
+    //   alert("회원가입이 완료되었습니다.");
+    //   window.location.reload();
+    // }
+
+    dispatch(newAccount(userInfo));
   };
 
   return (
