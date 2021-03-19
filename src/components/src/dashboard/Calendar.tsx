@@ -5,14 +5,22 @@ import googleCalendarPlugin from '@fullcalendar/google-calendar';
 import bootstrapPlugin from '@fullcalendar/bootstrap';
 
 const Calendar = () => {
+
+  const disabledClick = (info: any) => {
+    if (info.event.url) {
+      return;
+    }
+  };
+
   return (
     <div className="container-calendar">
       <FullCalendar
         plugins={[dayGridPlugin, googleCalendarPlugin, bootstrapPlugin]}
-        googleCalendarApiKey="AIzaSyBW8I1zj-ZgGZmFoDR7dOPbDs9y5M8CRiE"
         initialView="dayGridMonth"
         events={{
-          googleCalendarId: "ko.south_korea#holiday@group.v.calendar.google.com"
+          googleCalendarApiKey: "AIzaSyBW8I1zj-ZgGZmFoDR7dOPbDs9y5M8CRiE",
+          googleCalendarId: "ko.south_korea#holiday@group.v.calendar.google.com",
+          overlap: false
         }}
         navLinks={false}
         locale={"en"}
@@ -23,7 +31,8 @@ const Calendar = () => {
         }}
         dayHeaderClassNames={"week-text"}
         dayCellClassNames={"day-text"}
-        contentHeight={"430px"}
+        contentHeight={"35rem"}
+        eventMouseEnter={disabledClick}
       />
     </div>
   );
