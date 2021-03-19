@@ -1,5 +1,6 @@
-import HeaderComponent from "./src/common/HeaderComponents";
-import LoginComponent from "./src/login/LoginComponents";
-import MainComponent from "./src/main/MainComponents";
+import HeaderComponent from "./src/common/Header";
+import LoginComponent from "./src/login/Login";
+import CalendarComponent from "./src/main/Calendar";
+import NewAccountComponent from "./src/newAccount/newAccount";
 
-export { HeaderComponent, LoginComponent, MainComponent };
+export { HeaderComponent, LoginComponent, CalendarComponent, NewAccountComponent };

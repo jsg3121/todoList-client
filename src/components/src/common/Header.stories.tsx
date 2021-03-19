@@ -1,9 +1,9 @@
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
-import HeaderComponents, { HeaderProps } from './HeaderComponents';
+import Header, { HeaderProps } from './Header';
 
 const Default: Meta = {
-  component: HeaderComponents,
+  component: Header,
   title: "components/HeaderComponent",
   argTypes: {
   }
@@ -12,7 +12,7 @@ const Default: Meta = {
 export default Default;
 
 const Template: Story<HeaderProps> = (args) => {
-  return <HeaderComponents {...args} />;
+  return <Header {...args} />;
 };
 
 export const HeaderComponentsDefault = Template.bind({});

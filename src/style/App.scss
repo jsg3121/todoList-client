@@ -1,2 +1,16 @@
 @import "~antd/dist/antd.css";
 @import "./header.scss";
+@import "./customCalendar.scss";
+
+*::-webkit-scrollbar {
+  width: 0.625rem;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #dadada;
+  border-radius: 0.625rem;
+  background-clip: padding-box;
+  border: 0.125rem solid transparent;
+}
+*::-webkit-scrollbar-track {
+  background-color: #ffffff;
+}

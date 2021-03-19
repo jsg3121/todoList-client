@@ -1,0 +1,13 @@
+.week-text,
+.day-text {
+  * {
+    color: #333333;
+  }
+
+  &:first-child * {
+    color: #ff4040;
+  }
+  &:last-child * {
+    color: #40a9ff;
+  }
+}
