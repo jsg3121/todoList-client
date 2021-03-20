@@ -16,7 +16,7 @@ const newAccount = () => {
           label="아이디"
           name="아이디"
           rules={[{ required: true, message: 'Please input your password!' }]}>
-          <Input />
+          <Input placeholder="아이디를 입력해 주세요" />
         </Form.Item>
         <Form.Item
           label="비밀번호"
@@ -24,6 +24,19 @@ const newAccount = () => {
           rules={[{ required: true, message: 'Please input your password!' }]}
         >
           <Input.Password />
+        </Form.Item>
+        <Form.Item
+          label="비밀번호 확인"
+          name="비밀번호 확인"
+          rules={[{ required: true, message: 'Please input your password!' }]}
+        >
+          <Input.Password />
+        </Form.Item>
+        <Form.Item
+          label="닉네임"
+          name="닉네임"
+          rules={[{ required: true, message: 'Please input your password!' }]}>
+          <Input placeholder="화면에 표시될 닉네임을 입력해 주세요." />
         </Form.Item>
         <Form.Item label="생년월일">
           <Space>
@@ -55,6 +68,18 @@ const newAccount = () => {
               }
             </Select>
           </Space>
+        </Form.Item>
+        <Form.Item
+          label="휴대전화"
+          name="휴대전화"
+        >
+          <Input type="number" placeholder="본인 확인을 위한 용도로만 사용됩니다. (선택)" />
+        </Form.Item>
+        <Form.Item
+          label="이메일"
+          name="이메일"
+        >
+          <Input type="email" placeholder="본인 확인을 위한 용도로만 사용됩니다. (선택)" />
         </Form.Item>
         <Form.Item wrapperCol={{ span: 2 }}>
           <Button type="primary" htmlType="submit">
