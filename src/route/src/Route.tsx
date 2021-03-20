@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router';
 import Header from './common/Header';
 import Dashboard from './dashboard/Dashboard';
+import Login from './login/Login';
 import NewAccount from './newAccount/NewAccount';
 
 const Routing = () => {
@@ -14,6 +15,9 @@ const Routing = () => {
         </Route>
         <Route exact path="/newAccount">
           <NewAccount />
+        </Route>
+        <Route exact path="/login">
+          <Login />
         </Route>
         <Route exact path="*">
           <Redirect to="/main" />

@@ -31,7 +31,7 @@ const Calendar = () => {
         }}
         dayHeaderClassNames={"week-text"}
         dayCellClassNames={"day-text"}
-        contentHeight={"35rem"}
+        contentHeight={"28rem"}
         eventMouseEnter={disabledClick}
       />
     </div>

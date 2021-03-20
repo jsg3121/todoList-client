@@ -1,5 +1,5 @@
 .container-calendar {
-  width: 40rem;
+  width: 25rem;
 }
 
 .week-text,
@@ -13,5 +13,20 @@
   }
   &:last-child * {
     color: #40a9ff;
+  }
+}
+
+.fc-h-event {
+  border: 1px solid #f5df4d;
+  background-color: #f5df4d;
+
+  .fc-event-title-container {
+    height: 1rem;
+
+    .fc-event-title {
+      height: 100%;
+      font-size: 0.7rem;
+      color: #939597;
+    }
   }
 }
