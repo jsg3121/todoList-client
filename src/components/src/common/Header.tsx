@@ -11,7 +11,7 @@ const Header: React.FC<HeaderProps> = () => {
   return (
     <header>
       <PageHeader ghost={false} title="What Are You Doing Totay?" extra={[
-        <Link to="/login">
+        <Link to="/login" key="login">
           <Button key="1" size={'small'} >
             로그인
         </Button>
