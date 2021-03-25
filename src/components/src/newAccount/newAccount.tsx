@@ -22,7 +22,7 @@ const newAccount = () => {
         <Form.Item
           label="비밀번호"
           name="비밀번호"
-          rules={[{ required: true, message: '소문자 또는 대문자와 숫자를 이용하여 생성해 주시기 바랍니다.', pattern: /^[a-zA-Z0-9]*$/gi }]}
+          rules={[{ required: true, message: '소문자 또는 대문자와 숫자를 이용하여 생성해 주시기 바랍니다.', pattern: /^(?=\S*[a-z])(?=\S*[A-Z])(?=\S*\d)\S{6,}$/ }]}
         >
           <Input.Password />
         </Form.Item>
