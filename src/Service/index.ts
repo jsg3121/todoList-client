@@ -1,23 +1,25 @@
-import http from 'axios';
+import http from "axios";
+import { newAccountType } from "../types/account.types";
 
+const addUserService = async (userInfo: newAccountType) => {
+  await http
+    .post("/api/addUser", {
+      id: userInfo.id,
+      password: userInfo.password,
+      nickName: userInfo.nickName,
+      birthDate: userInfo.birthDate || "",
+      email: userInfo.email || "",
+      phoneNumber: userInfo.phoneNumber || "",
+    })
+    .then((res) => {
+      if (res.data) {
+        return true;
+      }
+    });
 
-const httpAddUser = async (userInfo: any) => {
-  console.log(userInfo);
-  console.log(userInfo.id);
-  console.log(userInfo.password);
-  let result = false;
-  await http.post('/api/addUser', {
-    id: userInfo.id,
-    password: userInfo.password
-  }).then(res => {
-    if (res.data) {
-      result = !result;
-    }
-  });
-
-  return result;
+  return false;
 };
 
-export {
-  httpAddUser
-};
+const getIdCheck = async () => {};
+
+export { addUserService, getIdCheck };
