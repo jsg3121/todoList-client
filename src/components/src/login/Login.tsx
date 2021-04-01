@@ -1,9 +1,13 @@
 import { Button, Checkbox, Form, Input, Space } from 'antd';
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../../Store';
+import { login } from '../../../Store/src/action/src/account.action';
 import "../../../style/login.scss";
+import { loginCheckType } from '../../../types/account.types';
 
 const Login = () => {
+  const dispach = useAppDispatch();
 
   const layout = {
     labelCol: { span: 6 },
@@ -13,27 +17,22 @@ const Login = () => {
     wrapperCol: { offset: 6, span: 16 },
   };
 
-  const onFinish = (values: any) => {
-    console.log('Success:', values);
-  };
-
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
+  const onFinish = useCallback((values: loginCheckType) => {
+    dispach(login(values));
+  }, [dispach]);
 
   return (
     <div className="login-container">
       <Form
         {...layout}
         name="basic"
-        initialValues={{ remember: true }}
+        initialValues={{ remember: false }}
         onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
       >
         <Form.Item
-          label="Username"
-          name="username"
-          rules={[{ message: 'Please input your username!' }]}
+          label="ID"
+          name="id"
+          rules={[{ message: '아이디를 입력해 주세요.' }]}
         >
           <Input />
         </Form.Item>
@@ -41,7 +40,7 @@ const Login = () => {
         <Form.Item
           label="Password"
           name="password"
-          rules={[{ message: 'Please input your password!' }]}
+          rules={[{ message: '비밀번호를 입력해 주세요.' }]}
         >
           <Input.Password />
         </Form.Item>

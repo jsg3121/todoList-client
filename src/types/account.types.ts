@@ -6,3 +6,8 @@ export type newAccountType = {
   email?: string | "";
   phoneNumber?: string | "";
 };
+
+export type loginCheckType = {
+  id: string;
+  password: string;
+};

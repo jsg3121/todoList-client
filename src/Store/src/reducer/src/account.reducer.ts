@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { addNewAccount, newAccount } from "../../action/src/account.action";
+import { loginComplate, login, newAccount } from "../../action/src/account.action";
 
 const stateInputNewAccount = {
   isLogin: false,
@@ -10,7 +10,10 @@ const accountReducer = createReducer(stateInputNewAccount, (build) => {
     .addCase(newAccount, (state, _) => {
       state.isLogin = false;
     })
-    .addCase(addNewAccount, (state, _) => {
+    .addCase(loginComplate, (state, _) => {
+      state.isLogin = true;
+    })
+    .addCase(login, (state, _) => {
       state.isLogin = true;
     });
 });
