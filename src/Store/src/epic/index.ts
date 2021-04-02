@@ -1,3 +1,3 @@
-import * as loginMiddleWare from "./src/loginMiddleWare";
+import * as accountEpic from "./src/account.epic";
 
-export { loginMiddleWare };
+export { accountEpic };

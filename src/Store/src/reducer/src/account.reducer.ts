@@ -1,8 +1,9 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { loginComplate, login, newAccount } from "../../action/src/account.action";
+import { login, loginComplate, loginFail, newAccount } from "../../action/src/account.action";
 
 const stateInputNewAccount = {
   isLogin: false,
+  idCheck: false,
 };
 
 const accountReducer = createReducer(stateInputNewAccount, (build) => {
@@ -15,6 +16,9 @@ const accountReducer = createReducer(stateInputNewAccount, (build) => {
     })
     .addCase(login, (state, _) => {
       state.isLogin = true;
+    })
+    .addCase(loginFail, (state, _) => {
+      console.log("err");
     });
 });
 

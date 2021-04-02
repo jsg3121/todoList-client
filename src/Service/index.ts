@@ -3,10 +3,11 @@ import { loginCheckType, newAccountType } from "../types/account.types";
 import CryptoJS from "crypto-js";
 
 const AUTH_KEY = "todolist-made-by-sg";
+const DATA_SALT = "don't-hack plz";
 
 const addUserService = async (userInfo: newAccountType | boolean) => {
   if (typeof userInfo !== "boolean") {
-    const encrypted = CryptoJS.AES.encrypt(userInfo.password, AUTH_KEY);
+    const encrypted = CryptoJS.AES.encrypt(`{"pin": "${DATA_SALT}", "date": ${Date.now()}, "data": "${userInfo.password}"}`, AUTH_KEY);
     const userData = { ...userInfo, password: encrypted.toString() };
     await http
       .post("/api/addUser", {
@@ -27,35 +28,33 @@ const addUserService = async (userInfo: newAccountType | boolean) => {
   }
 };
 
-const newAccountIdCheck = async (userInfo: newAccountType): Promise<newAccountType | boolean> => {
+const newAccountIdCheck = async (data: Pick<newAccountType, "id">): Promise<string | boolean> => {
   return await http
     .request({
       method: "POST",
       url: "/api/newAccountIdCheck",
       data: {
-        id: userInfo.id,
+        id: data,
       },
     })
     .then((res) => {
+      console.log(res.data);
       if (res.data === true) {
-        return userInfo;
+        return true;
       } else {
-        return false;
+        return res.data;
       }
     });
 };
 
 const loginAccountCheck = async (userInfo: loginCheckType): Promise<loginCheckType | boolean> => {
-  const encrypted = CryptoJS.AES.encrypt(userInfo.password, AUTH_KEY);
-  const userData = { ...userInfo, password: encrypted.toString() };
-
   return await http
     .request({
       method: "POST",
       url: "/api/loginAccountCheck",
       data: {
-        id: userData.id,
-        password: userData.password,
+        id: userInfo.id,
+        password: userInfo.password,
       },
     })
     .then((res) => {
