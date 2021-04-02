@@ -5,8 +5,9 @@ import CryptoJS from "crypto-js";
 const AUTH_KEY = "todolist-made-by-sg";
 const DATA_SALT = "don't-hack plz";
 
-const addUserService = async (userInfo: newAccountType | boolean) => {
-  if (typeof userInfo !== "boolean") {
+const addUserService = async (userInfo: newAccountType | string) => {
+  console.log(userInfo);
+  if (typeof userInfo !== "string") {
     const encrypted = CryptoJS.AES.encrypt(`{"pin": "${DATA_SALT}", "date": ${Date.now()}, "data": "${userInfo.password}"}`, AUTH_KEY);
     const userData = { ...userInfo, password: encrypted.toString() };
     await http
@@ -28,19 +29,18 @@ const addUserService = async (userInfo: newAccountType | boolean) => {
   }
 };
 
-const newAccountIdCheck = async (data: Pick<newAccountType, "id">): Promise<string | boolean> => {
+const newAccountIdCheck = async (data: Pick<newAccountType, "id">): Promise<newAccountType | string> => {
   return await http
     .request({
       method: "POST",
       url: "/api/newAccountIdCheck",
       data: {
-        id: data,
+        id: data.id,
       },
     })
     .then((res) => {
-      console.log(res.data);
       if (res.data === true) {
-        return true;
+        return data;
       } else {
         return res.data;
       }
