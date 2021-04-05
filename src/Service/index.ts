@@ -6,7 +6,6 @@ const AUTH_KEY = "todolist-made-by-sg";
 const DATA_SALT = "don't-hack plz";
 
 const addUserService = async (userInfo: newAccountType | string) => {
-  console.log(userInfo);
   if (typeof userInfo !== "string") {
     const encrypted = CryptoJS.AES.encrypt(`{"pin": "${DATA_SALT}", "date": ${Date.now()}, "data": "${userInfo.password}"}`, AUTH_KEY);
     const userData = { ...userInfo, password: encrypted.toString() };
@@ -26,23 +25,31 @@ const addUserService = async (userInfo: newAccountType | string) => {
       });
 
     return false;
+  } else {
+    switch (userInfo) {
+      case "errCode-01":
+        return "이미 존재하는 아이디 입니다.";
+    }
   }
 };
 
-const newAccountIdCheck = async (data: Pick<newAccountType, "id">): Promise<newAccountType | string> => {
+const newAccountIdCheck = async (data: string): Promise<boolean | string> => {
+  if (data === "" || data === undefined || data === null) {
+    return "errCode-02";
+  }
   return await http
     .request({
       method: "POST",
       url: "/api/newAccountIdCheck",
       data: {
-        id: data.id,
+        id: data,
       },
     })
     .then((res) => {
-      if (res.data === true) {
-        return data;
+      if (res.data) {
+        return true;
       } else {
-        return res.data;
+        return "errCode-01";
       }
     });
 };

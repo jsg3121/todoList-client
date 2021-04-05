@@ -1,10 +1,11 @@
-import { Button, Form, Input, Select, Space, Spin } from 'antd';
-import React, { useCallback, useEffect, useState } from 'react';
+import { Button, Form, Input, Modal, Select, Space, Spin } from 'antd';
+import React, { LegacyRef, useCallback, useEffect, useRef, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../Store';
-import { newAccount } from '../../../Store/src/action/src/account.action';
+import { checkNewAccountId, newAccount } from '../../../Store/src/action/src/account.action';
 import '../../../style/newAccount.scss';
 
 const NewAccount = () => {
+  const inputId: LegacyRef<Input> = useRef(null);
   const [password, setPassword] = useState(RegExp(""));
   const [birthYear, setBirthYear] = useState("");
   const [birthMonth, setBirthMonth] = useState("");
@@ -12,15 +13,15 @@ const NewAccount = () => {
   const [loading, setLoading] = useState(false);
   const getYear = new Date().getFullYear();
 
-  const isLogin = useAppSelector(state => {
-    return state.accountReducer.isLogin;
+  const state = useAppSelector(state => {
+    return state.accountReducer;
   });
 
   useEffect(() => {
-    if (isLogin) {
+    if (state.isLogin) {
       setLoading(false);
     }
-  }, [isLogin]);
+  }, [state.isLogin]);
 
   const dispatch = useAppDispatch();
 
@@ -35,6 +36,15 @@ const NewAccount = () => {
     dispatch(newAccount(e));
   }, [birthDay, birthMonth, birthYear, dispatch]);
 
+  const submitIdCheck = useCallback(() => {
+    const t = inputId.current?.state.value;
+
+    dispatch(checkNewAccountId(t));
+    Modal.info({
+      content: state.complatemessage,
+    });
+  }, [dispatch, state.complatemessage]);
+
   return (
     <div className="newAccount-container">
       <Spin tip="Loading..." spinning={loading}>
@@ -48,8 +58,9 @@ const NewAccount = () => {
             label="아이디"
             name="id"
             rules={[{ required: true, message: '영문으로 된 아이디를 입력해주세요.', pattern: /^[a-zA-Z0-9]*$/gi }]}>
-            <Input placeholder="아이디를 입력해 주세요" />
+            <Input placeholder="아이디를 입력해 주세요" ref={inputId} />
           </Form.Item>
+          <Button type="primary" onClick={submitIdCheck} loading={state.loading}>중복확인</Button>
           <Form.Item
             label="비밀번호"
             name="password"

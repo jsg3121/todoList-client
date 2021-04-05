@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
-import { loginAccountEpic, newAccountEpic } from "./src/epic/src/account.epic";
+import { checkNewAccountEpic, loginAccountEpic, newAccountEpic } from "./src/epic/src/account.epic";
 import rootReducer from "./src/reducer";
 
-export const rootEpic = combineEpics(newAccountEpic, loginAccountEpic);
+export const rootEpic = combineEpics(newAccountEpic, loginAccountEpic, checkNewAccountEpic);
 const epicMiddleWare = createEpicMiddleware();
 
 const store = configureStore({
